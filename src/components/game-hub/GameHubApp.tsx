@@ -10,6 +10,7 @@ import axios from 'axios';
 import { set } from 'react-hook-form';
 import Footer from './Footer';
 import AddGame from './AddGame';
+import API_BASE_URL from '../../Constants';
 
 interface User {
     username: string
@@ -28,7 +29,7 @@ interface signInResponse {
 function GameHubApp() {
     const list = ["Action", "Indie", "Adventure", "RPG", "Strategy", "Shooter", "Casual", "Simulation", "Puzzle", "Arcade", "Platformer", "Racing", "Massively Multiplayer", "Sports", "Fighting", "Family", "Board Games", "Educational", "Card"];
     const loginForm = async (user: User) => {
-        await axios.post("http://localhost:8080/api/auth/signin", { name: user.username, password: user.password }, {
+        await axios.post(API_BASE_URL+"api/auth/signin", { name: user.username, password: user.password }, {
             headers: {
                 "Content-Type": "application/json",
                 "User-Agent": "test"
@@ -47,7 +48,7 @@ function GameHubApp() {
     };
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/auth/session", {
+        axios.get(API_BASE_URL+"api/auth/session", {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("token")
             }
@@ -65,7 +66,7 @@ function GameHubApp() {
         localStorage.setItem("searchString", searchString)
     }
     const addGame = async (data: AddGame) => {
-        await axios.post("http://localhost:8080/game/addGame", { name: data.gameName, description: data.gameDesc, imgUrl: data.gameImgUrl, category: data.category }, {
+        await axios.post(API_BASE_URL+"game/addGame", { name: data.gameName, description: data.gameDesc, imgUrl: data.gameImgUrl, category: data.category }, {
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": "Bearer " + localStorage.getItem("token")

@@ -19,6 +19,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import GameDetails from "./GameDetails";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import API_BASE_URL from "../../Constants";
 
 
 interface Props {
@@ -39,7 +40,7 @@ function MainPage(props: Props) {
     const [gameData, setGameData] = useState<GameData[]>([]);
     useEffect(() => {
         const apiCallForGameData = (category: String) => {
-            axios.get("http://localhost:8080/game/" + category, {
+            axios.get(API_BASE_URL+"game/" + category, {
                 headers: {
                     "Authorization": "Bearer " + localStorage.getItem("token")
                 }

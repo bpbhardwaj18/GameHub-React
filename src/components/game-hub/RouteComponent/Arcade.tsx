@@ -1,13 +1,14 @@
 import axios from "axios"
 import { useEffect } from "react"
+import API_BASE_URL from "../../../Constants"
 
 function Arcade() {
 
     useEffect(() => {
         const apiCallForGameData = () => {
-            axios.get("http://localhost:8080/game/Action", {
+            axios.get(API_BASE_URL+"game/Action", {
                 headers: {
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiaGFudSIsImlhdCI6MTc0MzM0NDQ4NSwiZXhwIjoxNzQzMzQ1Mzg1fQ.IrP5fz7CjxxpPsXbe33zIcgiyjNJmOq-jHlet6uWsMQ"
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 }
             }).then(
                 (data) => {
