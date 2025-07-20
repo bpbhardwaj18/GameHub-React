@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect } from "react";
+import API_BASE_URL from "../../../Constants";
 
 function Adventure() {
 
@@ -7,7 +8,7 @@ function Adventure() {
         const apiCallForGameData = () => {
             axios.get(API_BASE_URL+"game/Action", {
                 headers: {
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiaGFudSIsImlhdCI6MTc0MzM0NDQ4NSwiZXhwIjoxNzQzMzQ1Mzg1fQ.IrP5fz7CjxxpPsXbe33zIcgiyjNJmOq-jHlet6uWsMQ"
+                    "Authorization": "Bearer " + localStorage.getItem("token")
                 }
             }).then(
                 (data) => {
